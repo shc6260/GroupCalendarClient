@@ -1,0 +1,66 @@
+﻿<Window
+    x:Class="GroupCalendar.Views.Account.AccountWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:GroupCalendar.Views.Account"
+    xmlns:acvm="clr-namespace:GroupCalendar.ViewModels.Account;assembly=GroupCalendar.ViewModels"
+    xmlns:hc="https://handyorg.github.io/handycontrol"
+    mc:Ignorable="d"
+    Title="로그인"
+    Height="600"
+    Width="400"
+    Background="{StaticResource LightPrimaryBrush}"
+    >
+    <Window.Resources>
+        <!-- 메인 뷰 -->
+        <DataTemplate DataType="{x:Type acvm:LoginViewModel}">
+            <local:LoginView />
+        </DataTemplate>
+
+        <!-- 앨범정보 뷰 -->
+        <DataTemplate DataType="{x:Type acvm:RegisterViewModel}">
+            <local:RegisterView />
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid Margin="0 10 0 0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Button
+                Margin="10 0 0 0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Content="회원가입"
+                Command="{Binding GoToResisterCommand}"
+                Visibility="{Binding ViewModel, Converter={StaticResource TypeEqualToVisibleConverter}, ConverterParameter={x:Type acvm:LoginViewModel}}"
+                />
+
+            <Button
+                Margin="10 0 0 0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Content="로그인"
+                Command="{Binding GoToLoginCommand}"
+                Visibility="{Binding ViewModel, Converter={StaticResource TypeEqualToVisibleConverter}, ConverterParameter={x:Type acvm:RegisterViewModel}}"
+                />
+
+            <TextBlock
+                Style="{StaticResource TitleStyle}"
+                Text="그룹 캘린더"
+                />
+        </Grid>
+
+        <ContentControl
+            Grid.Row="1"
+            x:Name="xMainContent"
+            Content="{Binding ViewModel}"
+            Margin="0 0 0 0"
+            />
+    </Grid>
+</Window>
