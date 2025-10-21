@@ -3,6 +3,7 @@
 c#/Wpf를 사용한 일기, 일정 관리를 위한 그룹 캘린더 클라이언트 입니다.
 
 Mvvm 패턴 - CommunityToolkit.Mvvm
+
 MsSql, Dapper사용 
 
 ________________________________
